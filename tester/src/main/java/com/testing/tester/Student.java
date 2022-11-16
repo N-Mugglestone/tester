@@ -2,12 +2,14 @@ package com.testing.tester;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
-    //use Lombok to reduce the need of  putting in all the constructors, getters and setters
+//use Lombok to reduce the need of  putting in all the constructors, getters and setters
     @Data
     @Document
  public class Student {
@@ -15,6 +17,7 @@ import java.time.LocalDateTime;
      private String id;
      private String firstName;
      private String lastName;
+     @Indexed(unique = true)
      private String email;
      private Gender gender;
      private Address address;
