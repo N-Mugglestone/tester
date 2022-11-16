@@ -21,7 +21,7 @@ public class TesterApplication {
 			Address address = new Address(
 					"England",
 					"London",
-					"NE9"
+					"NE9 4RF"
 			);
 			Student student = new Student(
 					"Jamila",
