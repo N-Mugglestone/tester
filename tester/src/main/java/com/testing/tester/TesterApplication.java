@@ -27,14 +27,14 @@ public class TesterApplication {
 					"London",
 					"NE9 4RF"
 			);
-			String email = "jahmed@google.co.uk";
+			String email = "jahmed@google.com";
 			Student student = new Student(
 					"Jamila",
 					"Ahmed",
 					email,
 					Gender.FEMALE,
 					address,
-					"IT",
+					"Math",
 					LocalDateTime.now()
 			);
 
@@ -44,14 +44,22 @@ public class TesterApplication {
 
 			List<Student> students = mongoTemplate.find(query, Student.class);
 
-			if (students.size() >1){
-				throw new IllegalStateException( email + "already exists");
+			if (students.contains(email)){
+				System.out.println(email + "already exists");
 			}
-			if (students.isEmpty()){
-				System.out.println("Student added, welcome" + student);
-				repository.insert(student);
-			}else{
+
+//			if (students.isEmpty()){
+//				System.out.println("Student added, welcome" + student);
+//				repository.insert(student);
+//			}else{
+//				System.out.println(student + "already exists");
+//			}
+
+			if (students.contains(student.getId())
+			){
 				System.out.println(student + "already exists");
+			}else{
+				System.out.println("Student added, welcome " + student.getFirstName());
 			}
 
 			repository.insert(student);
@@ -62,8 +70,8 @@ public class TesterApplication {
 }
 
 // This could work for Java 9 and beyond but the .ifPresentOrElse Optional does not work for Java 8.
+
 //	private void usingMongoTemplateAndQuery(StudentRepository repository, MongoTemplate mongoTemplate, String email, Student student) {
-//
 //			repository.findStudentByEmail(email)
 //					.ifPresentOrElse(s -> {
 //						System.out.println(s + "already exists");
