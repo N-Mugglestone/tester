@@ -6,13 +6,16 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 
 //use Lombok to reduce the need of  putting in all the constructors, getters and setters
+
     @Data
     @Document
  public class Student {
+
+
     @Id
      private String id;
      private String firstName;

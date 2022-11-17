@@ -27,7 +27,7 @@ public class TesterApplication {
 					"London",
 					"NE9 4RF"
 			);
-			String email = "jahmed@google.com";
+			String email = "jahmed@gmail.com";
 			Student student = new Student(
 					"Jamila",
 					"Ahmed",
