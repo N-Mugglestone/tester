@@ -22,19 +22,11 @@ public class TesterApplication {
 	CommandLineRunner runner(StudentRepository repository, MongoTemplate mongoTemplate) {
 		return args -> {
 
-			Address address = new Address(
-					"England",
-					"London",
-					"NE9 4RF"
-			);
 			String email = "jahmed@gmail.com";
 			Student student = new Student(
 					"Jamila",
 					"Ahmed",
 					email,
-					Gender.FEMALE,
-					address,
-					"Math",
 					LocalDateTime.now()
 			);
 
@@ -59,7 +51,7 @@ public class TesterApplication {
 			){
 				System.out.println(student + "already exists");
 			}else{
-				System.out.println("Student added, welcome " + student.getFirstName());
+				System.out.println("Student added, welcome " + student.getFirstName() + student.getLastName());
 			}
 
 			repository.insert(student);

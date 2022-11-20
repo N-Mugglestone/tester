@@ -7,8 +7,8 @@ import java.util.List;
 import com.testing.tester.Student;
 
 @AllArgsConstructor
-@Service
-
+@Component
+//@Service
 public class StudentService {
 
     private StudentRepository studentRepository;
@@ -21,10 +21,10 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-//    public List<Student> saveStudent(){
-//      return studentRepository.save(student);
-//    }
-//
+    public Student saveStudent(Student students){
+      return studentRepository.save(students);
+    }
+
 //    public List<Student> deleteStudent(){
 //        return studentRepository.deleteStudentByName();
 //    }
