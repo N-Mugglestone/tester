@@ -7,8 +7,8 @@ import java.util.List;
 import com.testing.tester.Student;
 
 @AllArgsConstructor
-@Component
-//@Service
+//@Component
+@Service
 public class StudentService {
 
     private StudentRepository studentRepository;

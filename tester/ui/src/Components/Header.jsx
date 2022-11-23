@@ -11,6 +11,8 @@ const Header = () => {
                       <a href="/"> Home </a>
 
                       <a href ="/AddAPerson"> AddAPerson </a>
+                      <a href = "/NewPost"> NewPost </a>
+                      <a href = "/Posts"> Posts </a>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
 
