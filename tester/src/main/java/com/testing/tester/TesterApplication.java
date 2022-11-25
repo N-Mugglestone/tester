@@ -4,12 +4,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @SpringBootApplication
 public class TesterApplication {
@@ -19,7 +16,7 @@ public class TesterApplication {
 	}
 
 	@Bean
-	CommandLineRunner runner(StudentRepository repository, MongoTemplate mongoTemplate) {
+	CommandLineRunner runner(StudentRepository repository) {
 		return args -> {
 
 			Address address = new Address(
@@ -27,49 +24,21 @@ public class TesterApplication {
 					"London",
 					"NE9 4RF"
 			);
-			String email = "jahmed@google.co.uk";
+
 			Student student = new Student(
 					"Jamila",
 					"Ahmed",
-					email,
+					"jahmed@google.co.uk",
 					Gender.FEMALE,
 					address,
-					"IT",
+					"ENGLISH",
 					LocalDateTime.now()
 			);
-
-
-			Query query = new Query();
-			query.addCriteria(Criteria.where("email").is(email));
-
-			List<Student> students = mongoTemplate.find(query, Student.class);
-
-			if (students.size() >1){
-				throw new IllegalStateException( email + "already exists");
-			}
-			if (students.isEmpty()){
-				System.out.println("Student added, welcome" + student);
-				repository.insert(student);
-			}else{
-				System.out.println(student + "already exists");
-			}
 
 			repository.insert(student);
 
 		};
 }
-
 }
-
-// This could work for Java 9 and beyond but the .ifPresentOrElse Optional does not work for Java 8.
-//	private void usingMongoTemplateAndQuery(StudentRepository repository, MongoTemplate mongoTemplate, String email, Student student) {
-//
-//			repository.findStudentByEmail(email)
-//					.ifPresentOrElse(s -> {
-//						System.out.println(s + "already exists");
-//					}, ()->{
-//						System.out.println("Inserting student" + student);
-//						repository.insert(student);
-//					});
 
 
